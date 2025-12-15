@@ -61,6 +61,11 @@ export default function CreateTopic() {
   }, []);
 
   const handleSave = async () => {
+    if (!user) {
+      toast.error('로그인이 필요합니다.');
+      return;
+    }
+
     if (!title && !content && category && !thumbnail) {
       toast.warning('제목, 본문, 카테고리, 썸네일을 기입하세요..');
       return;
@@ -94,7 +99,7 @@ export default function CreateTopic() {
           content: JSON.stringify(content),
           category,
           thumbnail: thumbnailUrl,
-          author: user?.id,
+          author: user.id,
           status: TOPIC_STATUS.TEMP,
         },
       ])
@@ -110,6 +115,11 @@ export default function CreateTopic() {
     }
   };
   const handlePublish = async () => {
+    if (!user) {
+      toast.error('로그인이 필요합니다.');
+      return;
+    }
+
     if (!title && !content && category && !thumbnail) {
       toast.warning('제목, 본문, 카테고리, 썸네일을 기입하세요..');
       return;
@@ -143,7 +153,7 @@ export default function CreateTopic() {
           content: JSON.stringify(content),
           category,
           thumbnail: thumbnailUrl,
-          author: user?.id,
+          author: user.id,
           status: TOPIC_STATUS.PUBLISH,
         },
       ])
