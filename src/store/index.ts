@@ -20,11 +20,7 @@ export const useAuthStore = create<AuthStore>()(
   persist(
     (set) => ({
       // 초기 상태
-      user: {
-        id: '',
-        email: '',
-        role: '',
-      },
+      user: null,
 
       // 로그인 시
       setAuth: (newUser: UserInfo | null) => set({user: newUser}),

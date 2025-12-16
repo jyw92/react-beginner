@@ -17,12 +17,14 @@ import {
 import {NavLink, useNavigate} from 'react-router';
 import {ArrowLeft, Asterisk, ChevronRight} from 'lucide-react';
 import {Separator} from '@radix-ui/react-separator';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {toast} from 'sonner';
 import {useSignUp} from '@/hooks/mutations/auth/use-sign-up';
 import {generateErrorMessage} from '@/error';
 
 import {useSignUpAgreed} from '@/hooks/mutations/auth/use-sign-up-agreed';
+import supabase from '@/lib/supabase';
+import {useAuthStore} from '@/store';
 
 const formSchema = z
   .object({
@@ -48,7 +50,7 @@ const formSchema = z
 
 export default function SignUp() {
   const navigate = useNavigate();
-
+  const setAuth = useAuthStore((state) => state.setAuth);
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -109,6 +111,23 @@ export default function SignUp() {
   const handleCheckMarketing = () => setMarketingAgreed(!marketingAgreed);
   const handleCheckService = () => setServiceAgreed(!serviceAgreed);
   const handleCheckPrivacy = () => setPrivacyAgreed(!privacyAgreed);
+
+  useEffect(() => {
+    const checkSession = async () => {
+      const {
+        data: {session},
+      } = await supabase.auth.getSession();
+      if (session) {
+        setAuth({
+          id: session.user.id,
+          email: session.user.email as string,
+          role: session.user.role as string,
+        });
+        navigate('/');
+      }
+    };
+    checkSession();
+  }, []);
 
   return (
     <div className="w-full h-full min-h-[720px] flex p-6 gap-6 justify-center items-center">
