@@ -85,6 +85,28 @@ export default function DetailTopic() {
   }, [id]);
   const handleDelete = async () => {
     try {
+      // [추가된 로직] 1. 썸네일이 존재한다면 스토리지에서 파일 삭제
+      if (thumbnail) {
+        // DB에는 전체 Public URL이 저장되어 있습니다.
+        // 예: https://.../storage/v1/object/public/files/topics/abc.png
+        // 여기서 'files/' 뒷부분인 'topics/abc.png'만 추출해야 삭제가 가능합니다.
+
+        const imagePath = thumbnail.split('/files/')[1];
+
+        if (imagePath) {
+          const {error: storageError} = await supabase.storage
+            .from('files') // CreateTopic에서 사용한 버킷 이름
+            .remove([imagePath]); // 삭제할 경로는 배열 형태여야 함
+
+          if (storageError) {
+            console.error('이미지 삭제 중 오류 발생:', storageError);
+            // 이미지를 못 지웠다고 해서 게시글 삭제를 막을지, 그냥 넘어갈지는 선택 사항입니다.
+            // 여기서는 로그만 남기고 게시글 삭제를 진행합니다.
+          }
+        }
+      }
+
+      // 2. DB 테이블 데이터 삭제 (기존 로직)
       const {error} = await supabase.from('topic').delete().eq('id', id);
 
       if (error) {
@@ -97,8 +119,7 @@ export default function DetailTopic() {
       }
     } catch (error) {
       console.log(error);
-      // 여기서 throw를 하면 useEffect 내부라 잡히지 않을 수 있습니다.
-      // toast 처리를 하거나 로깅만 하는 것이 좋습니다.
+      toast.error('삭제 처리 중 오류가 발생했습니다.');
     }
   };
   return (

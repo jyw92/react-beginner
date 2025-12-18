@@ -171,7 +171,7 @@ export default function CreateTopic() {
   };
 
   return (
-    <div className="w-full h-full min-h-[1024px] flex gap-6">
+    <div className="w-full h-full min-h-[1024px] flex gap-6 flex-col md:flex-row p-4 pb-[100px]">
       <div className="fixed right-1/2 bottom-10 translate-x-1/2 z-20 flex items-center gap-2">
         <Button variant={'outline'} size={'icon'} onClick={() => navigate('/')}>
           <ArrowLeft />
@@ -186,7 +186,7 @@ export default function CreateTopic() {
         </Button>
       </div>
       {/* 토픽 작성하기 */}
-      <section className="w-3/4 h-full flex flex-col gap-6">
+      <section className="md:w-3/4 h-full flex flex-col gap-6 w-full">
         <div className="flex flex-col pb-6 border-b">
           <span className="text-[#f96859] font-semibold">Step 01</span>
           <span className="font-semibold tet-base">토픽작성하기</span>
@@ -216,7 +216,7 @@ export default function CreateTopic() {
         </div>
       </section>
       {/* 카테고리 및 썸네일 등록 */}
-      <section className="w-1/4 h-full flex flex-col gap-6">
+      <section className="md:w-1/4 h-full flex flex-col gap-6 w-full">
         <div className="flex flex-col pb-6 border-b">
           <span className="text-[#f96859] font-semibold">Step 02</span>
           <span className="font-semibold tet-base">카테고리 및 썸네일 등록</span>

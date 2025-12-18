@@ -36,9 +36,8 @@ function AppHeader() {
         <div className="flex items-center gap-5">
           <div className="flex items-center gap-5">
             <NavLink to="/" className="font-semibold cursor-pointer flex items-center gap-2">
-              토픽 인사이트
+              TOPIC
             </NavLink>
-            <Separator orientation="vertical" className="h-4!" />
           </div>
         </div>
         {/* 로그인 UI */}
@@ -57,7 +56,7 @@ function AppHeader() {
 
         {user ? (
           <div className="flex items-center gap-5">
-            <span>{user.email}</span>
+            <span>{user.email.split('@')[0]}</span>
             <Separator orientation="vertical" className="h-4!" />
             <span onClick={handleLogout} className="cursor-pointer">
               로그아웃
