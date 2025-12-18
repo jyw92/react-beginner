@@ -36,18 +36,9 @@ function AppHeader() {
         <div className="flex items-center gap-5">
           <div className="flex items-center gap-5">
             <NavLink to="/" className="font-semibold cursor-pointer flex items-center gap-2">
-              <img
-                src="https://github.com/9diin.png"
-                alt="@LOGO"
-                className="w-6 h-6 cursor-pointer"
-                onClick={() => navigate('/')}
-              />
               토픽 인사이트
             </NavLink>
             <Separator orientation="vertical" className="h-4!" />
-            <NavLink to={'/portfolio'} className="font-semibold cursor-pointer">
-              포트폴리오
-            </NavLink>
           </div>
         </div>
         {/* 로그인 UI */}
