@@ -245,7 +245,7 @@ export default function SignUp() {
               </div>
               <div className="flex flex-col gap-3">
                 <div className="flex gap-2 items-center">
-                  <Button type="button" variant={'outline'} size={'icon'}>
+                  <Button type="button" variant={'outline'} size={'icon'} onClick={() => navigate('/')}>
                     <ArrowLeft />
                   </Button>
                   <Button type="submit" variant={'outline'} className="flex-1 bg-green-800/50!">
