@@ -1,5 +1,5 @@
 import {AppDraftsDialog, AppSidebar} from '@/components/common';
-import {SkeletonHotTopic} from '@/components/skeleton';
+// import {SkeletonHotTopic} from '@/components/skeleton';
 import {NewTopicCard} from '@/components/topics';
 import {Button} from '@/components/ui';
 import {generateErrorMessage} from '@/error';
@@ -138,7 +138,7 @@ export default function IndexPage() {
       {/* 토픽 콘텐츠 */}
       <section className="w-full lg:w-[calc(100% - 264px)] flex flex-col gap-12">
         {/* 핫토픽 */}
-        <div className="w-full flex flex-col gap-6">
+        {/* <div className="w-full flex flex-col gap-6">
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2">
               <img src="/assets/gifs/gif-001.gif" alt="@IMG" className="w-7 h-7" />
@@ -154,14 +154,14 @@ export default function IndexPage() {
             <SkeletonHotTopic />
             <SkeletonHotTopic />
           </div>
-        </div>
+        </div> */}
 
         {/* New 토픽 */}
         <div className="w-full flex flex-col gap-6">
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2">
               <img src="/assets/gifs/gif-003.gif" alt="@IMG" className="w-7 h-7" />
-              <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">내 토픽</h4>
+              <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">토픽</h4>
             </div>
             <p className="text-muted-foreground md:text-base">
               새로운 시선으로, 새로운 이야기를 시작하세요. 지금 바로 당신만의 토픽을 작성해보세요.
